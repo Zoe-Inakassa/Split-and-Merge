@@ -23,6 +23,11 @@ public class Main {
         //reading picture
         float[][][] tabImage= new float[xImage][yImage][zImage];
         VectorUInt32 vector = new VectorUInt32(3,0);
+        vector.set(0,0L);
+        vector.set(1,0L);
+        vector.set(2,0L);
+        float minColor=image.getPixelAsFloat(vector);
+        float maxColor=image.getPixelAsFloat(vector);
         Long e = 1L;
         for(int x=0;x<xImage;x++){
             vector.set(0,x*e);
@@ -31,6 +36,8 @@ public class Main {
                 for(int z=0;z<zImage;z++){
                     vector.set(2,z*e);
                     tabImage[x][y][z]= image.getPixelAsFloat(vector);
+                    if(tabImage[x][y][z]<minColor) minColor=tabImage[x][y][z];
+                    if(tabImage[x][y][z]>maxColor) maxColor=tabImage[x][y][z];
                 }
             }
         }
