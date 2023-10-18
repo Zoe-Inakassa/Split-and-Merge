@@ -5,6 +5,7 @@ out/
 
 .idea/
 libs/
+image/
 *.iml
 
 ### Eclipse ###
