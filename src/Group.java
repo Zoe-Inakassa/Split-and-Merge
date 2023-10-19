@@ -51,9 +51,9 @@ public class Group {
     //Seeking colormin and colormax within a cube
     public void seekingMinMax(Cube cube, float[][][] tabimage){
         float colorintab;
-        for(int i=cube.getStart().getX(); i<cube.getEnd().getX(); i++){
-            for(int j=cube.getStart().getY(); j<cube.getEnd().getY(); j++){
-                for(int k=cube.getStart().getZ(); k<cube.getEnd().getZ(); k++){
+        for(int i=cube.getStartX(); i<cube.getEndX(); i++){
+            for(int j=cube.getStartY(); j<cube.getEndY(); j++){
+                for(int k=cube.getStartZ(); k<cube.getEndZ(); k++){
                     colorintab=tabimage[i][j][k];
                     if(colorintab<colormin) colormin = colorintab;
                     if(colorintab>colormax) colormax = colorintab;

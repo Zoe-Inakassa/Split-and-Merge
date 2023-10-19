@@ -9,12 +9,25 @@ public class Cube {
     }
 
     //Getters
-    public Coordinates getStart() {
-        return start;
+    public int getStartX() {
+        return start.getX();
+    }
+    public int getStartY() {
+        return start.getY();
+    }
+    public int getStartZ() {
+        return start.getZ();
     }
 
-    public Coordinates getEnd() {
-        return end;
+
+    public int getEndX() {
+        return end.getX();
+    }
+    public int getEndY() {
+        return end.getY();
+    }
+    public int getEndZ() {
+        return end.getZ();
     }
 
     //Test if another cube is its neighbour
@@ -22,25 +35,32 @@ public class Cube {
         //variables representing how many sides of the two cubes are in limit-contact
         int nbofattachedsides=0;
         //if a cube starts after the other one ends in any dimension, they are not neighbours
-        if(start.getX()>secondcube.getEnd().getX() || secondcube.getStart().getX()>end.getX())
+        if(start.getX()>secondcube.getEndX() || secondcube.getStartX()>end.getX())
             return false;
-        if(start.getY()>secondcube.getEnd().getY() || secondcube.getStart().getY()>end.getY())
+        if(start.getY()>secondcube.getEndY() || secondcube.getStartY()>end.getY())
             return false;
-        if(start.getZ()>secondcube.getEnd().getZ() || secondcube.getStart().getZ()>end.getZ())
+        if(start.getZ()>secondcube.getEndZ() || secondcube.getStartZ()>end.getZ())
             return false;
         //if more than one side are in limit-contact, only the edges touch and they are not neighbours
-        if(start.getX()==secondcube.getEnd().getX() || end.getX()==secondcube.getStart().getX()) {
+        if(start.getX()==secondcube.getEndX() || end.getX()==secondcube.getStartX()) {
             nbofattachedsides++;
         }
-        if(start.getY()==secondcube.getEnd().getY() || end.getY()==secondcube.getStart().getY()) {
+        if(start.getY()==secondcube.getEndY() || end.getY()==secondcube.getStartY()) {
             nbofattachedsides++;
             if(nbofattachedsides>1) return false;
         }
-        if(start.getZ()==secondcube.getEnd().getZ() || end.getZ()==secondcube.getStart().getZ()) {
+        if(start.getZ()==secondcube.getEndZ() || end.getZ()==secondcube.getStartZ()) {
             nbofattachedsides++;
             if(nbofattachedsides>1) return false;
         }
         //otherwise they are neighbours
         return true;
+    }
+
+    public int getCubeVolume() {
+        int volume =(end.getX()-start.getX());
+        volume = volume * (end.getY()-start.getY());
+        volume = volume * (end.getZ()-start.getZ());
+        return volume;
     }
 }
