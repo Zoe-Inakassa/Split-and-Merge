@@ -8,7 +8,7 @@ public class Group {
     public Group() {
         groupnumber = nbofgroup;
         nbofgroup++;
-        colormin = 0;
+        colormin = Integer.MAX_VALUE;
         colormax = 0;
     }
 
