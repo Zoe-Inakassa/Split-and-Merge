@@ -5,20 +5,26 @@ public class Split {
         //do something
     }
 
-    public static Boolean HomogeneityTest(Cube cube, float[][][] tabImage, int homogeneityC){
-        float colorintab;
+    public static boolean HomogeneityTest(Cube cube, float[][][] tabImage, float homogeneityC){
+        float tempcolor;
         float colormin=tabImage[0][0][0];
         float colormax=tabImage[0][0][0];
         for(int i=cube.getStart().getX(); i<cube.getEnd().getX(); i++){
             for(int j=cube.getStart().getY(); j<cube.getEnd().getY(); j++){
                 for(int k=cube.getStart().getZ(); k<cube.getEnd().getZ(); k++){
-                    colorintab=tabImage[i][j][k];
-                    if(colorintab<colormin) colormin = colorintab;
-                    if(colorintab>colormax) colormax = colorintab;
+                    tempcolor=tabImage[i][j][k];
+                    if(tempcolor<colormin) colormin = tempcolor;
+                    if(tempcolor>colormax) colormax = tempcolor;
                 }
             }
         }
-        if((colormax-colormin)<homogeneityC) return Boolean.TRUE;
-        else return Boolean.FALSE;
+        return (colormax - colormin) < homogeneityC;
     }
+
+    public static Boolean HomogeneityTest(Group group1,Group group2, float homogeneityC){
+        float maxcolor = Math.max(group1.getColormax(),group2.getColormax());
+        float mincolor = Math.min(group1.getColormin(),group2.getColormin());
+        return (maxcolor - mincolor) < homogeneityC;
+    }
+
 }

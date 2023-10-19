@@ -1,5 +1,5 @@
 public class Group {
-    private int groupnumber;
+    final private int groupnumber;
     private float colormin;
     private float colormax;
     private static int nbofgroup = 0;

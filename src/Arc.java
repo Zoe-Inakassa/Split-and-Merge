@@ -1,6 +1,6 @@
 public class Arc {
-    private int start;
-    private int end;
+    final private int start;
+    final private int end;
 
     public Arc(int start, int end) {
         this.start = start;

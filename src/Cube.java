@@ -1,6 +1,6 @@
 public class Cube {
-    private Coordinates start;
-    private Coordinates end;
+    final private Coordinates start;
+    final private Coordinates end;
 
     //Constructor
     public Cube(int x0, int y0, int z0, int x1, int y1, int z1){
@@ -31,7 +31,6 @@ public class Cube {
         //if more than one side are in limit-contact, only the edges touch and they are not neighbours
         if(start.getX()==secondcube.getEnd().getX() || end.getX()==secondcube.getStart().getX()) {
             nbofattachedsides++;
-            if(nbofattachedsides>1) return false;
         }
         if(start.getY()==secondcube.getEnd().getY() || end.getY()==secondcube.getStart().getY()) {
             nbofattachedsides++;
