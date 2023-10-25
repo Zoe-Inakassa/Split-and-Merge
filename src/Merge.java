@@ -9,7 +9,7 @@ public class Merge {
         for(int firstcube=0; firstcube< cubelist.size()-1; firstcube++){
             for(int secondcube=firstcube+1; secondcube< cubelist.size(); secondcube++){
                 //if they are neighbours, we create an arc that we add to the graph
-                if(cubelist.get(firstcube).IsNeighbourWith(cubelist.get(secondcube))){
+                if(cubelist.get(firstcube).isNeighbourWith(cubelist.get(secondcube))){
                     Arc arc = new Arc(firstcube, secondcube);
                     arcs.add(arc);
                 }

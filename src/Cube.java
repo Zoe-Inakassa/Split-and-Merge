@@ -31,7 +31,7 @@ public class Cube {
     }
 
     //Test if another cube is its neighbour
-    public boolean IsNeighbourWith(Cube secondcube){
+    public boolean isNeighbourWith(Cube secondcube){
         //variables representing how many sides of the two cubes are in limit-contact
         int nbofattachedsides=0;
         //if a cube starts after the other one ends in any dimension, they are not neighbours
