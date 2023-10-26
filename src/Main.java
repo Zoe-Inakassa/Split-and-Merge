@@ -1,5 +1,6 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
+import java.util.ArrayList;
 
 import org.itk.simple.*;
 public class Main {
@@ -7,6 +8,8 @@ public class Main {
         if(args.length<4){
             System.exit(1);
         }
+        float homogeneityC = Float.parseFloat(args[1]);
+        int volumeMin = Integer.parseInt(args[2]);
 
         ImageFileReader reader = new ImageFileReader();
         reader.setImageIO("NiftiImageIO");
@@ -41,15 +44,29 @@ public class Main {
                 }
             }
         }
+        System.out.println("maxcolor=" + maxColor);
+        System.out.println("mincolor=" + minColor);
+        homogeneityC=homogeneityC*(maxColor);
+
+        //algorithm
+        ArrayList<Cube> cubeList = new ArrayList<>();
+        ArrayList<Group> groupList = new ArrayList<>();
+        Cube imageCube = new Cube(0,0,0,xImage,yImage,zImage);
+        Split.split(homogeneityC,volumeMin,tabImage,imageCube,cubeList,groupList);
 
         //writing picture
-        for(int x=0;x<xImage;x++){
-            vector.set(0,x*e);
-            for(int y=0;y<yImage;y++){
-                vector.set(1,y*e);
-                for(int z=0;z<zImage;z++){
-                    vector.set(2,z*e);
-                    image.setPixelAsFloat(vector,tabImage[x][y][z]);
+        //carefull this only work if the image haven't been merged
+        float color;
+        for(int i=0;i<groupList.size();i++){
+            color=(groupList.get(i).getColormax()-groupList.get(i).getColormin())/2+groupList.get(i).getColormin();
+            for(int x=cubeList.get(i).getStartX();x<cubeList.get(i).getEndX();x++){
+                vector.set(0,x*e);
+                for(int y=cubeList.get(i).getStartY();y<cubeList.get(i).getEndY();y++){
+                    vector.set(1,y*e);
+                    for(int z=cubeList.get(i).getStartZ();z<cubeList.get(i).getEndZ();z++){
+                        vector.set(2,z*e);
+                        image.setPixelAsFloat(vector,color);
+                    }
                 }
             }
         }

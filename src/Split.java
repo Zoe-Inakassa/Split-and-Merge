@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 public class Split {
-    public static void split(float homogeneityC, int volumeMin, float[][][] image, Cube cube, ArrayList<Cube>
-            cubeList, ArrayList<Group> groupList){
+    public static void split(float homogeneityC, int volumeMin, float[][][] image, Cube cube,
+            ArrayList<Cube> cubeList, ArrayList<Group> groupList){
         boolean test = homogeneityTest(cube,image, homogeneityC);
         if(!test){
             if(cube.getCubeVolume()/8>volumeMin){
