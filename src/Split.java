@@ -4,7 +4,7 @@ public class Split {
             ArrayList<Cube> cubeList, ArrayList<Group> groupList){
         boolean test = homogeneityTest(cube,image, homogeneityC);
         if(!test){
-            if(cube.getCubeVolume()/8>volumeMin){
+            if(cube.getCubeVolume()>volumeMin){
                 int startX= cube.getStartX();
                 int endX= cube.getEndX();
                 int midX= (endX-startX)/2 + startX;
@@ -14,30 +14,33 @@ public class Split {
                 int startZ= cube.getStartZ();
                 int endZ= cube.getEndZ();
                 int midZ= (endZ-startZ)/2 + startZ;
-                //1
-                Cube nouveauCube= new Cube(startX,startY,startZ,midX,midY,midZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //2
-                nouveauCube= new Cube(midX,startY,startZ,endX,midY,midZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //3
-                nouveauCube= new Cube(startX,midY,startZ,midX,endY,midZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //4
-                nouveauCube= new Cube(startX,startY,midZ,midX,midY,endZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //5
-                nouveauCube= new Cube(midX,midY,startZ,endX,endY,midZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //6
-                nouveauCube= new Cube(midX,startY,midZ,endX,midY,endZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //7
-                nouveauCube= new Cube(startX,midY,midZ,midX,endY,endZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
-                //8
-                nouveauCube= new Cube(midX,midY,midZ,endX,endY,endZ);
-                split(homogeneityC,volumeMin,image, nouveauCube,cubeList,groupList);
+                //all the sides of the cube have to be at least of size 2 to be able to be split into 8 groups
+                if(endX-startX>=2 && endY-startY>=2 && endZ-startZ>=2) {
+                    //1
+                    Cube nouveauCube = new Cube(startX, startY, startZ, midX, midY, midZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //2
+                    nouveauCube = new Cube(midX, startY, startZ, endX, midY, midZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //3
+                    nouveauCube = new Cube(startX, midY, startZ, midX, endY, midZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //4
+                    nouveauCube = new Cube(startX, startY, midZ, midX, midY, endZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //5
+                    nouveauCube = new Cube(midX, midY, startZ, endX, endY, midZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //6
+                    nouveauCube = new Cube(midX, startY, midZ, endX, midY, endZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //7
+                    nouveauCube = new Cube(startX, midY, midZ, midX, endY, endZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                    //8
+                    nouveauCube = new Cube(midX, midY, midZ, endX, endY, endZ);
+                    split(homogeneityC, volumeMin, image, nouveauCube, cubeList, groupList);
+                }
             }
             else{
                 addToList(image, cube, cubeList, groupList);
@@ -70,12 +73,5 @@ public class Split {
         }
         return (colormax - colormin) < homogeneityC;
     }
-
-    public static Boolean homogeneityTest(Group group1,Group group2, float homogeneityC){
-        float maxcolor = Math.max(group1.getColormax(),group2.getColormax());
-        float mincolor = Math.min(group1.getColormin(),group2.getColormin());
-        return (maxcolor - mincolor) < homogeneityC;
-    }
-
 
 }
