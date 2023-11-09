@@ -1,3 +1,5 @@
+package Main;
+
 public class Group {
     private float colormin;
     private float colormax;

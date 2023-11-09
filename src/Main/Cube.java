@@ -1,3 +1,5 @@
+package Main;
+
 /**
  * Class Cube
  */
@@ -14,7 +16,7 @@ public class Cube {
      * @param y1 int, coordinate y of ending point of the cube
      * @param z1 int, coordinate z of ending point of the cube
      */
-    public Cube(int x0, int y0, int z0, int x1, int y1, int z1){
+    public Cube(int x0, int y0, int z0, int x1, int y1, int z1) {
         start = new Coordinates(x0, y0, z0);
         end = new Coordinates(x1, y1, z1);
     }

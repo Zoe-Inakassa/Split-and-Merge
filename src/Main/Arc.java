@@ -1,3 +1,5 @@
+package Main;
+
 public class Arc {
     final private int start;
     final private int end;
