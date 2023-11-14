@@ -10,18 +10,22 @@ public class Main {
         }
         float homogeneityC = Float.parseFloat(args[1]);
         int volumeMin = Integer.parseInt(args[2]);
-
-        ImageFileReader reader = new ImageFileReader();
+        Image image = SimpleITK.readImage(args[0], PixelIDValueEnum.sitkFloat32, "NiftiImageIO");
+        /*ImageFileReader reader = new ImageFileReader();
         reader.setImageIO("NiftiImageIO");
         reader.setFileName(args[0]);
-        Image image = reader.execute();
-        if(image.getNumberOfComponentsPerPixel()!=1) System.out.println("carefull number of component per pixel !=1");
+        Image image = reader.execute();*/
+        if(image.getNumberOfComponentsPerPixel()!=1) System.out.println("careful number of component per pixel !=1");
         if(image.getSize().size()!=3){
             System.exit(2);//bad image dimension
         }
         int xImage =Math.toIntExact(image.getSize().get(0));
         int yImage =Math.toIntExact(image.getSize().get(1));
         int zImage =Math.toIntExact(image.getSize().get(2));
+        System.out.println("Volume of the image :"+xImage*yImage*zImage);
+        System.out.println("Dimension x of size :"+xImage);
+        System.out.println("Dimension y of size :"+yImage);
+        System.out.println("Dimension z of size :"+zImage);
 
         long startTime = System.currentTimeMillis();
         //reading picture
@@ -56,16 +60,22 @@ public class Main {
         long startSplitTime = System.currentTimeMillis();
         Split.split(homogeneityC,volumeMin,tabImage,imageCube,cubeList,groupList);
         long endSplitTime = System.currentTimeMillis() - startSplitTime;
+        long elapsedSplitSeconds = endSplitTime / 1000;
+        System.out.println("Le split a mis " + elapsedSplitSeconds + " secondes.");
+        System.out.println("Il y a " + Group.getNbofGroup() + " groupes après l'opération split.");
 
         long startGrapheTime = System.currentTimeMillis();
-        ArrayList<Arc> arcList= Merge.makeNeighbourGraph(cubeList);
+        ArrayList<Arc> arcList= Graph.makeNeighbourGraph(cubeList);
         long endGrapheTime = System.currentTimeMillis() - startGrapheTime;
+        long elapsedGrapheSeconds = endGrapheTime / 1000;
+        System.out.println("La création du graphe a mis " + elapsedGrapheSeconds + " secondes.");
 
-        System.out.println("Il y a " + Group.getNbofGroup() + " groupes après l'opération split.");
 
         long startMergeTime = System.currentTimeMillis();
         int[] associatedGroups = Merge.merge(homogeneityC, arcList, groupList);
         long endMergeTime = System.currentTimeMillis() - startMergeTime;
+        long elapsedMergeSeconds = endMergeTime / 1000;
+        System.out.println("Le merge a mis " + elapsedMergeSeconds + " secondes.");
 
         //writing picture
         //carefull this only work if the image haven't been merged
@@ -90,14 +100,8 @@ public class Main {
         writer.execute(image);
         long elapsedTime = System.currentTimeMillis() - startTime;
         long elapsedSeconds = elapsedTime / 1000;
-        long elapsedSplitSeconds = endSplitTime / 1000;
-        long elapsedGrapheSeconds = endGrapheTime / 1000;
-        long elapsedMergeSeconds = endMergeTime / 1000;
         System.out.println("Il y a " + Group.getNbofGroup() + " groupes finaux.");
         System.out.println("Fin. Le programme a mis " + elapsedSeconds + " secondes à lire puis réécrire l'image.");
-        System.out.println("Le split a mis " + elapsedSplitSeconds + " secondes.");
-        System.out.println("La création du graphe a mis " + elapsedGrapheSeconds + " secondes.");
-        System.out.println("Le merge a mis " + elapsedMergeSeconds + " secondes.");
 
         System.exit(0);
     }
