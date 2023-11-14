@@ -29,4 +29,17 @@ public class Arc {
     public int getEnd() {
         return end;
     }
+
+    /**
+     * Override of the equals method
+     * @param o Object, another object to compare with
+     * @return boolean, true if the two arcs have the same start and end
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Arc arc = (Arc) o;
+        return start == arc.start && end == arc.end;
+    }
 }
