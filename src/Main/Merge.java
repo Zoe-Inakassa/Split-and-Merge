@@ -6,26 +6,6 @@ import java.util.ArrayList;
  * Class Merge
  */
 public class Merge {
-    /**
-     * creates a neighbour's graph from a list of cubes
-     * @param cubelist ArrayList<Cube>, list of cubes
-     * @return arcs, ArrayList<Arc>
-     */
-    public static ArrayList<Arc> makeNeighbourGraph(ArrayList<Cube> cubelist){
-        //list of arcs representing the graph
-        ArrayList<Arc> arcs = new ArrayList<>();
-        //for each cube, we test if the other cubes are its neighbour
-        for(int firstcube=0; firstcube< cubelist.size()-1; firstcube++){
-            for(int secondcube=firstcube+1; secondcube< cubelist.size(); secondcube++){
-                //if they are neighbours, we create an arc that we add to the graph
-                if(cubelist.get(firstcube).isNeighbourWith(cubelist.get(secondcube))){
-                    Arc arc = new Arc(firstcube, secondcube);
-                    arcs.add(arc);
-                }
-            }
-        }
-        return arcs;
-    }
 
     /**
      * Change the min and max of the modified group
@@ -41,7 +21,7 @@ public class Merge {
     }
 
     /**
-     * Test if two groups are homogeneou
+     * Test if two groups are homogeneous
      * @param group1 int, number of the first group
      * @param group2 int, number of the second group
      * @param homogeneityC float, homogeneity criteria
