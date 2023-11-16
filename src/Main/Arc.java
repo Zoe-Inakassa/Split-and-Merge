@@ -1,5 +1,7 @@
 package Main;
 
+import java.util.Objects;
+
 public class Arc {
     final private int start;
     final private int end;
@@ -10,8 +12,8 @@ public class Arc {
      * @param end int, target group id
      */
     public Arc(int start, int end) {
-        this.start = start;
-        this.end = end;
+        this.start = Math.min(start,end);
+        this.end = Math.max(start,end);
     }
 
     /**
@@ -41,5 +43,10 @@ public class Arc {
         if (o == null || getClass() != o.getClass()) return false;
         Arc arc = (Arc) o;
         return start == arc.start && end == arc.end;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end);
     }
 }

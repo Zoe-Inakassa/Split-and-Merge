@@ -28,7 +28,7 @@ class CubeTest {
     void testisNeighbourWith() {
         assertAll(() -> Assertions.assertFalse(cube[2].isNeighbourWith(cube[3])),//not neighbour on z
                 () -> Assertions.assertFalse(cube[4].isNeighbourWith(cube[5])),//touching on two sides
-                () -> Assertions.assertTrue(cube[2].isNeighbourWith(cube[4])),//neighbours on 2 coordinates + z ouch
+                () -> Assertions.assertTrue(cube[2].isNeighbourWith(cube[4])),//neighbours on 2 coordinates + z touch
                 () -> Assertions.assertTrue(cube[2].isNeighbourWith(cube[6])),//neighbours with one coordinates within another coordinates
                 () -> Assertions.assertTrue(cube[5].isNeighbourWith(cube[7])));//first cube called before the second
     }

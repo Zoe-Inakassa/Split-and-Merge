@@ -1,6 +1,7 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Graph {
     /**
@@ -27,12 +28,14 @@ public class Graph {
     /**
      * Creates a neighbour's graph from a list of cubes and the image
      * This method use proximity of pixels to find neighbours
-     * @param image float[][][], a 3Dtab containing pixel colors
      * @param cubelist ArrayList<Cube>, list of cubes
+     * @param xsize int, size of the original image on the x dimension
+     * @param ysize int, size of the original image on the y dimension
+     * @param zsize int, size of the original image on the z dimension
      * @return arcs, ArrayList<Arc>
      */
-    public static ArrayList<Arc> makeNeighbourGraph(float[][][] image, ArrayList<Cube> cubelist){
-        int[][][] groupImage = makeGroupImage(image,cubelist);
+    public static ArrayList<Arc> makeNeighbourGraph(ArrayList<Cube> cubelist, int xsize, int ysize, int zsize){
+        int[][][] groupImage = makeGroupImage(cubelist, xsize, ysize, zsize);
         //list of arcs representing the graph
         ArrayList<Arc> arcs = new ArrayList<>();
         //for each group we check the borders pixels
@@ -40,7 +43,7 @@ public class Graph {
         for(int i=0; i< cubelist.size(); i++){
             //On x border
             x=cubelist.get(i).getEndX();
-            if(x!=image.length){
+            if(x!=xsize){
                 for(y=cubelist.get(i).getStartY(); y<cubelist.get(i).getEndY(); y++){
                     for(z=cubelist.get(i).getStartZ(); z<cubelist.get(i).getEndZ(); z++) {
                         if(i!= groupImage[x+1][y][z]){
@@ -53,7 +56,7 @@ public class Graph {
 
             //On y border
             y=cubelist.get(i).getEndY();
-            if(y!=image[0].length){
+            if(y!=ysize){
                 for(x=cubelist.get(i).getStartX(); x<cubelist.get(i).getEndX(); x++){
                     for(z=cubelist.get(i).getStartZ(); z<cubelist.get(i).getEndZ(); z++) {
                         if(i!= groupImage[x][y+1][z]){
@@ -66,7 +69,7 @@ public class Graph {
 
             //On z border
             z=cubelist.get(i).getEndZ();
-            if(z!=image[0][0].length){
+            if(z!=zsize){
                 for(y=cubelist.get(i).getStartY(); y<cubelist.get(i).getEndY(); y++){
                     for(x=cubelist.get(i).getStartX(); x<cubelist.get(i).getEndX(); x++) {
                         if(i!= groupImage[x][y][z+1]){
@@ -82,14 +85,13 @@ public class Graph {
 
     /**
      * Creates an 3Dtab in wich every pixel value is its group number
-     * @param image float[][][], a 3Dtab containing pixel colors
      * @param cubelist ArrayList<Cube>, list of cubes
+     * @param xsize int, size of the original image on the x dimension
+     * @param ysize int, size of the original image on the y dimension
+     * @param zsize int, size of the original image on the z dimension
      * @return int[][][], new GroupTab
      */
-    public static int[][][] makeGroupImage(float[][][] image, ArrayList<Cube> cubelist){
-        int xsize = image.length;
-        int ysize = image[0].length;
-        int zsize = image[0][0].length;
+    public static int[][][] makeGroupImage(ArrayList<Cube> cubelist, int xsize, int ysize, int zsize){
         int[][][] groupImage = new int[xsize][ysize][zsize];
         for(int i=0;i<cubelist.size();i++){
             for(int x=cubelist.get(i).getStartX();x<cubelist.get(i).getEndX();x++){
@@ -102,4 +104,14 @@ public class Graph {
         }
         return groupImage;
     }
+
+    /**
+     * Suppress all duplicates arcs from the list
+     * @param arcs ArrayList<Arc>, list of arcs
+     * @return arcs, ArrayList<Arc>
+     */
+    public static ArrayList<Arc> suppressingDuplicates(ArrayList<Arc> arcs){
+        return new ArrayList<>(new HashSet<>(arcs));
+    }
+
 }
