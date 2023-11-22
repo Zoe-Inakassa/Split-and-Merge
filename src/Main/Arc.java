@@ -7,7 +7,7 @@ public class Arc {
     final private int end;
 
     /**
-     * Constructor
+     * Constructor, if the start is bigger than the end the constructor will switch them
      * @param start int, starting group id
      * @param end int, target group id
      */
