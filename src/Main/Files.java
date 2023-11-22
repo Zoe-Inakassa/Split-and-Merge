@@ -48,7 +48,7 @@ public class Files {
             }
         }
         imageProcessing.setMaxcolor(maxColor);
-        imageProcessing.setMaxcolor(minColor);
+        imageProcessing.setMincolor(minColor);
     }
 
     public static void WritingImage(ImageProcessing imageProcessing,String fileName, ArrayList<Cube> cubeList, ArrayList<Group> groupList, int[] associatedGroups) {
