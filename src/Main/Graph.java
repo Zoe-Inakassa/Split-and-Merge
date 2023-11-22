@@ -28,6 +28,7 @@ public class Graph {
     /**
      * Creates a neighbour's graph from a list of cubes and the image
      * This method use proximity of pixels to find neighbours
+     * This method must be used in association with suppressingDuplicates in order to it to be efficient
      * @param cubelist ArrayList<Cube>, list of cubes
      * @param xsize int, size of the original image on the x dimension
      * @param ysize int, size of the original image on the y dimension
@@ -39,7 +40,7 @@ public class Graph {
         //list of arcs representing the graph
         ArrayList<Arc> arcs = new ArrayList<>();
         //for each group we check the borders pixels
-        int x=0, y=0, z=0;
+        int x, y, z;
         for(int i=0; i< cubelist.size(); i++){
             //On x border
             x=cubelist.get(i).getEndX();
@@ -107,8 +108,9 @@ public class Graph {
 
     /**
      * Suppress all duplicates arcs from the list
+     * only the return list is modified
      * @param arcs ArrayList<Arc>, list of arcs
-     * @return arcs, ArrayList<Arc>
+     * @return arcs, ArrayList<Arc>, new modified list
      */
     public static ArrayList<Arc> suppressingDuplicates(ArrayList<Arc> arcs){
         return new ArrayList<>(new HashSet<>(arcs));
