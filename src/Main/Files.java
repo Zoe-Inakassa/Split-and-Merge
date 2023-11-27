@@ -6,7 +6,9 @@ import org.itk.simple.*;
 
 import java.util.ArrayList;
 
-
+/**
+ * Contains methods to interact with files
+ */
 public class Files {
     /**
      * This method is reading an image and putting information into imageProcessing

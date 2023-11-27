@@ -1,5 +1,8 @@
 package Main;
 
+/**
+ * Class representing a group with his variation of color
+ */
 public class Group {
     private float colormin;
     private float colormax;

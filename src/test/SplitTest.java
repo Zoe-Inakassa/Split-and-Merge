@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import Main.Cube;
 import Main.Split;
-class SplitTest {
+class SplitTest extends Split{
     Cube cube1;
     Cube cube2;
     float[][][] image = new float[5][5][5];

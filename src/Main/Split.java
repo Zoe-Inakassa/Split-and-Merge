@@ -1,6 +1,10 @@
 package Main;
 
 import java.util.ArrayList;
+
+/**
+ * Class containing the splitting method and associated functions
+ */
 public class Split {
     /**
      * Splitting method, Split the image into groups and their associated cubes.
@@ -73,7 +77,7 @@ public class Split {
      * @param cubeList ArrayList<Cube>, where we store the new cube
      * @param groupList ArrayList<Group>, where we store the new group just created
      */
-    public static void addToList(float[][][] image, Cube cube, ArrayList<Cube> cubeList, ArrayList<Group> groupList){
+    private static void addToList(float[][][] image, Cube cube, ArrayList<Cube> cubeList, ArrayList<Group> groupList){
         cubeList.add(cube);
         Group group= new Group();
         groupList.add(group);
@@ -87,7 +91,7 @@ public class Split {
      * @param homogeneityC float, homogeneity criteria
      * @return boolean, true if the criteria is respected
      */
-    public static boolean homogeneityTest(Cube cube, float[][][] tabImage, float homogeneityC){
+    protected static boolean homogeneityTest(Cube cube, float[][][] tabImage, float homogeneityC){
         float tempcolor;
         float colormin=tabImage[0][0][0];
         float colormax=tabImage[0][0][0];

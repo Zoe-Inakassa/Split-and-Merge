@@ -3,7 +3,7 @@ package Main;
 import java.util.ArrayList;
 
 /**
- * Class Merge
+ * Class containing methods to merge an image
  */
 public class Merge {
 
@@ -15,7 +15,7 @@ public class Merge {
      * @param keptgroup int, number of the group to keep the same
      * @param modifiedgroup int, number of the group to modify
      */
-    public static void changeMinMax(ArrayList<Group> groups, int keptgroup, int modifiedgroup){
+    private static void changeMinMax(ArrayList<Group> groups, int keptgroup, int modifiedgroup){
         groups.get(keptgroup).setColormin(Math.min(groups.get(modifiedgroup).getColormin(), groups.get(keptgroup).getColormin()));
         groups.get(keptgroup).setColormax(Math.max(groups.get(modifiedgroup).getColormax(), groups.get(keptgroup).getColormax()));
     }
@@ -27,7 +27,7 @@ public class Merge {
      * @param homogeneityC float, homogeneity criteria
      * @return boolean, true if the two groups are homogeneous, false if they are not
      */
-    public static Boolean homogeneityTest(Group group1,Group group2, float homogeneityC){
+    private static Boolean homogeneityTest(Group group1,Group group2, float homogeneityC){
         float maxcolor = Math.max(group1.getColormax(),group2.getColormax());
         float mincolor = Math.min(group1.getColormin(),group2.getColormin());
         return (maxcolor - mincolor) < homogeneityC;
@@ -41,7 +41,7 @@ public class Merge {
      * @param secondGroup int, number of the second group
      * @param associatedgroups, int[] array of the associated groups of the cubes
      */
-    public static void merge2Groups(ArrayList<Group> groups, int firstGroup, int secondGroup, int[] associatedgroups){
+    private static void merge2Groups(ArrayList<Group> groups, int firstGroup, int secondGroup, int[] associatedgroups){
         //newgroup and modifiedgroup represent the groups associated to firstgroup and secondgroup
         int keptgroup = associatedgroups[firstGroup];
         int modifiedgroup = associatedgroups[secondGroup];

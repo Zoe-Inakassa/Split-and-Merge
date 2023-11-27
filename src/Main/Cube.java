@@ -1,7 +1,7 @@
 package Main;
 
 /**
- * Class Cube
+ * Class used to represent a cube with 2 Coordinates
  */
 public class Cube {
     final private Coordinates start;

@@ -1,7 +1,7 @@
 package Main;
 
 /**
- * Class Coordinates
+ * Class used to represent a 3D coordinate
  */
 public class Coordinates {
     private int x;

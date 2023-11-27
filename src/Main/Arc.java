@@ -2,6 +2,9 @@ package Main;
 
 import java.util.Objects;
 
+/**
+ * Class used to represent a non-oriented arc
+ */
 public class Arc {
     final private int start;
     final private int end;

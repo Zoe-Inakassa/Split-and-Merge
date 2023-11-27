@@ -3,6 +3,9 @@ package Main;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+/**
+ * Contains 2 methods to create a neighbour graph and associated functions
+ */
 public class Graph {
     /**
      * Creates a neighbour's graph from a list of cubes
@@ -92,7 +95,7 @@ public class Graph {
      * @param zsize int, size of the original image on the z dimension
      * @return int[][][], new GroupTab
      */
-    public static int[][][] makeGroupImage(ArrayList<Cube> cubelist, int xsize, int ysize, int zsize){
+    private static int[][][] makeGroupImage(ArrayList<Cube> cubelist, int xsize, int ysize, int zsize){
         int[][][] groupImage = new int[xsize][ysize][zsize];
         for(int i=0;i<cubelist.size();i++){
             for(int x=cubelist.get(i).getStartX();x<cubelist.get(i).getEndX();x++){

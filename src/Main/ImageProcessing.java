@@ -2,6 +2,10 @@ package Main;
 
 import java.util.ArrayList;
 import org.itk.simple.*;
+
+/**
+ * Main class, store information and contain main method
+ */
 public class ImageProcessing {
 
     private Image image;
@@ -211,7 +215,7 @@ public class ImageProcessing {
 
     /**
      * Constructor of ImageProcessing
-     * choose basic values for each attributs to stay coherent
+     * choose basic values for each attributes to stay coherent
      */
     public ImageProcessing() {
         image=null;tabImage=null;
