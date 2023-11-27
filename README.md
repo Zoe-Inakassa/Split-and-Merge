@@ -10,6 +10,7 @@ Our project is now finished, here is a link to the (french) report of the projec
 
 This project contains: 
 	In the src folder: our different code files divided by classes
+ 
 	In the test folder: our code files for unitary tests
 
 Inputs:
