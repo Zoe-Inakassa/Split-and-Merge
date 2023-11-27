@@ -6,9 +6,22 @@ import org.itk.simple.*;
 
 import java.util.ArrayList;
 
+
 public class Files {
+    /**
+     * This method is reading an image and putting information into imageProcessing
+     * If the filename is incorrect the program interrupt with value 2
+     * @param fileName String, name of the file to read
+     * @param imageProcessing ImageProcessing, object containing global information on the image
+     */
     public static void ReadingImage(String fileName, ImageProcessing imageProcessing) {
-        imageProcessing.setImage(SimpleITK.readImage(fileName, PixelIDValueEnum.sitkFloat32, "NiftiImageIO"));
+        try{
+            imageProcessing.setImage(SimpleITK.readImage(fileName, PixelIDValueEnum.sitkFloat32, "NiftiImageIO"));
+        }catch(RuntimeException e){
+            System.out.println("Fichier non trouvé !!");
+            System.out.println(fileName + " is not recognized as a NIFTI file");
+            System.exit(2);
+        }
         /*ImageFileReader reader = new ImageFileReader();
         reader.setImageIO("NiftiImageIO");
         reader.setFileName(args[0]);
@@ -51,6 +64,14 @@ public class Files {
         imageProcessing.setMincolor(minColor);
     }
 
+    /**
+     * This method write a modified image thanks to all information given in arguments
+     * @param imageProcessing ImageProcessing, object containing global information on the image
+     * @param fileName String, name of the file to write
+     * @param cubeList ArrayList<Cube>, list of all Cube in the image
+     * @param groupList ArrayList<Group>, list of all Group in the image
+     * @param associatedGroups int[], contain the linked group of the index
+     */
     public static void WritingImage(ImageProcessing imageProcessing,String fileName, ArrayList<Cube> cubeList, ArrayList<Group> groupList, int[] associatedGroups) {
         VectorUInt32 vector = new VectorUInt32(3,0);
         Long e = 1L;

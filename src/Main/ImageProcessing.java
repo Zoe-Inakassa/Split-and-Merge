@@ -75,11 +75,10 @@ public class ImageProcessing {
             arcList = Graph.suppressingDuplicates(arcList);
         }
         //-------------------------------------------------------------
-
-
         long endGraphTime = System.currentTimeMillis() - startGraphTime;
         long elapsedGraphSeconds = endGraphTime / 1000;
         System.out.println("La création du graphe a mis " + elapsedGraphSeconds + " secondes.");
+
 
         //Merge
         long startMergeTime = System.currentTimeMillis();
@@ -96,8 +95,6 @@ public class ImageProcessing {
         long elapsedSeconds = elapsedTime / 1000;
         System.out.println("Il y a " + Group.getNbofGroup() + " groupes finaux.");
         System.out.println("Fin. Le programme a mis " + elapsedSeconds + " secondes à lire puis réécrire l'image.");
-
-        System.exit(0);
     }
 
     /**
