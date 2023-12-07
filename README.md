@@ -8,14 +8,14 @@ It writes the new image in another niftii file.
 We worked on the project from the end of September to the beginning of January, a big part of the project was used finding good algorithm to split and merge the images.
 Our project is now finished, here is a link to the (french) report of the project: https://www.overleaf.com/read/ptsrppmccsty#53580e
 
-This project contains: 
-	In the src folder: our different code files divided by classe;
+This project contains in the src folder: 
+	In the Main folder: our different code files divided by classe;
 	In the test folder: our code files for unitary tests;
 
 Inputs:
 	Homogeneity Criteria (value between 0 and 1) - defines the precision with wich the image will be splitted;
 	Minimal volume - no cube will be splitted if it's volume is under this value;
-	Neighbour graph creation method (0 to use our first method, anything else to use the other one) - usually, putting something else than 0 will be faster;
+	Neighbour graph creation method (0 to use our first method, anything else to use the other one) - usually, the second method will be faster;
 	path to the image to read;
 	path to the image to write; 
 
