@@ -23,5 +23,6 @@ Outputs:
 	New image Niftii generated after the split and merge;
 	0 if no error;
 	1 if not enough arguments;
-	2 if file not found;
-	3 if file's dimensions incompatible with our program;
+ 	2 if homogeneityC is out of bounds
+	3 if file not found;
+	4 if file's dimensions incompatible with our program;
