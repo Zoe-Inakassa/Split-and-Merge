@@ -27,11 +27,15 @@ public class ImageProcessing {
      */
     public static void main(String[] args) {
         //reading arguments
-        if(args.length<4){
+        if(args.length<5){
             System.out.println("miss some arguments");
             System.exit(1);
         }
         float homogeneityC = Float.parseFloat(args[0]);
+        if(homogeneityC>1 || homogeneityC<0){
+            System.out.println("Homogeneity criteria is out of bounds");
+            System.exit(2);
+        }
         int volumeMin = Integer.parseInt(args[1]);
         ImageProcessing imageProcessing =new ImageProcessing();
 

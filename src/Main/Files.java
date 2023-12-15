@@ -22,7 +22,7 @@ public class Files {
         }catch(RuntimeException e){
             System.out.println("Fichier non trouvé !!");
             System.out.println(fileName + " is not recognized as a NIFTI file");
-            System.exit(2);
+            System.exit(3);
         }
         /*ImageFileReader reader = new ImageFileReader();
         reader.setImageIO("NiftiImageIO");
@@ -32,7 +32,7 @@ public class Files {
         if (image.getNumberOfComponentsPerPixel() != 1) System.out.println("careful number of component per pixel !=1");
         if (image.getSize().size() != 3) {
             System.out.println("bad image dimension");
-            System.exit(2);//bad image dimension
+            System.exit(4);//bad image dimension
         }
         imageProcessing.setxLengthImage(Math.toIntExact(image.getSize().get(0)));
         int xImage = imageProcessing.getxLengthImage();
@@ -49,13 +49,13 @@ public class Files {
         vector.set(2,0L);
         float minColor=image.getPixelAsFloat(vector);
         float maxColor=image.getPixelAsFloat(vector);
-        Long e = 1L;
+        Long alongvalue = 1L;
         for(int x=0;x<xImage;x++){
-            vector.set(0,x*e);
+            vector.set(0,x*alongvalue);
             for(int y=0;y<yImage;y++){
-                vector.set(1,y*e);
+                vector.set(1,y*alongvalue);
                 for(int z=0;z<zImage;z++){
-                    vector.set(2,z*e);
+                    vector.set(2,z*alongvalue);
                     tabImage[x][y][z]= image.getPixelAsFloat(vector);
                     if(tabImage[x][y][z]<minColor) minColor=tabImage[x][y][z];
                     if(tabImage[x][y][z]>maxColor) maxColor=tabImage[x][y][z];
@@ -76,18 +76,18 @@ public class Files {
      */
     public static void WritingImage(ImageProcessing imageProcessing,String fileName, ArrayList<Cube> cubeList, ArrayList<Group> groupList, int[] associatedGroups) {
         VectorUInt32 vector = new VectorUInt32(3,0);
-        Long e = 1L;
+        Long alongvalue = 1L;
         float color;
         Group group;
         for(int i=0;i<cubeList.size();i++){
             group = groupList.get(associatedGroups[i]);
             color=(group.getColormax()-group.getColormin())/2+group.getColormin();
             for(int x=cubeList.get(i).getStartX();x<cubeList.get(i).getEndX();x++){
-                vector.set(0,x*e);
+                vector.set(0,x*alongvalue);
                 for(int y=cubeList.get(i).getStartY();y<cubeList.get(i).getEndY();y++){
-                    vector.set(1,y*e);
+                    vector.set(1,y*alongvalue);
                     for(int z=cubeList.get(i).getStartZ();z<cubeList.get(i).getEndZ();z++){
-                        vector.set(2,z*e);
+                        vector.set(2,z*alongvalue);
                         imageProcessing.getImage().setPixelAsFloat(vector,color);
                     }
                 }

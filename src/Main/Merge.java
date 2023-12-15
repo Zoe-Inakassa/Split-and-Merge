@@ -42,7 +42,7 @@ public class Merge {
      * @param associatedgroups, int[] array of the associated groups of the cubes
      */
     private static void merge2Groups(ArrayList<Group> groups, int firstGroup, int secondGroup, int[] associatedgroups){
-        //newgroup and modifiedgroup represent the groups associated to firstgroup and secondgroup
+        //keptgroup and modifiedgroup represent the groups associated to firstgroup and secondgroup
         int keptgroup = associatedgroups[firstGroup];
         int modifiedgroup = associatedgroups[secondGroup];
         //we change the highest associated group into the lowest one
