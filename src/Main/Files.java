@@ -70,8 +70,8 @@ public class Files {
      * This method write a modified image thanks to all information given in arguments
      * @param imageProcessing ImageProcessing, object containing global information on the image
      * @param fileName String, name of the file to write
-     * @param cubeList ArrayList<Cube>, list of all Cube in the image
-     * @param groupList ArrayList<Group>, list of all Group in the image
+     * @param cubeList ArrayList(Cube), list of all Cube in the image
+     * @param groupList ArrayList(Group), list of all Group in the image
      * @param associatedGroups int[], contain the linked group of the index
      */
     public static void WritingImage(ImageProcessing imageProcessing,String fileName, ArrayList<Cube> cubeList, ArrayList<Group> groupList, int[] associatedGroups) {

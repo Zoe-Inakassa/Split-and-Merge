@@ -64,8 +64,8 @@ public class Merge {
      * Tests if they are homogeneous
      * Merge the groups together
      * @param homogeneityC float, homogeneity criteria
-     * @param arcs ArrayList<Arc>, list of arcs representing the graph
-     * @param groups ArrayList<Group>, list of groups
+     * @param arcs ArrayList(Arc), list of arcs representing the graph
+     * @param groups ArrayList(Group), list of groups
      * @return associatedgroups, int[] an array containing the groups associated with each cube after the merge
      */
     public static int[] merge(float homogeneityC, ArrayList<Arc> arcs, ArrayList<Group> groups){

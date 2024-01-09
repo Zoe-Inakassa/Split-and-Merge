@@ -9,8 +9,8 @@ import java.util.HashSet;
 public class Graph {
     /**
      * Creates a neighbour's graph from a list of cubes
-     * @param cubelist ArrayList<Cube>, list of cubes
-     * @return arcs, ArrayList<Arc>
+     * @param cubelist ArrayList(Arc), list of cubes
+     * @return arcs, ArrayList(Cube)
      */
     public static ArrayList<Arc> makeNeighbourGraph(ArrayList<Cube> cubelist){
         //list of arcs representing the graph
@@ -32,11 +32,11 @@ public class Graph {
      * Creates a neighbour's graph from a list of cubes and the image
      * This method use proximity of pixels to find neighbours
      * This method must be used in association with suppressingDuplicates in order to it to be efficient
-     * @param cubelist ArrayList<Cube>, list of cubes
+     * @param cubelist ArrayList(Cube), list of cubes
      * @param xsize int, size of the original image on the x dimension
      * @param ysize int, size of the original image on the y dimension
      * @param zsize int, size of the original image on the z dimension
-     * @return arcs, ArrayList<Arc>
+     * @return arcs, ArrayList(Arc)
      */
     public static ArrayList<Arc> makeNeighbourGraph(ArrayList<Cube> cubelist, int xsize, int ysize, int zsize){
         int[][][] groupImage = makeGroupImage(cubelist, xsize, ysize, zsize);
@@ -112,8 +112,8 @@ public class Graph {
     /**
      * Suppress all duplicates arcs from the list
      * only the return list is modified
-     * @param arcs ArrayList<Arc>, list of arcs
-     * @return arcs, ArrayList<Arc>, new modified list
+     * @param arcs ArrayList(Arc), list of arcs
+     * @return arcs, ArrayList(Arc), new modified list
      */
     public static ArrayList<Arc> suppressingDuplicates(ArrayList<Arc> arcs){
         return new ArrayList<>(new HashSet<>(arcs));

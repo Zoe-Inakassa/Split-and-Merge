@@ -15,8 +15,8 @@ public class Split {
      * @param volumeMin int, number minimum of pixel a cube volume can be to be split
      * @param image float[][][], a 3Dtab containing pixel colors
      * @param cube Cube, the studied cube
-     * @param cubeList ArrayList<Cube>, where we store the new cubes created, should be empty at first call
-     * @param groupList ArrayList<Group>, where we store the new groups created, should be empty at first call
+     * @param cubeList ArrayList(Cube), where we store the new cubes created, should be empty at first call
+     * @param groupList ArrayList(Group), where we store the new groups created, should be empty at first call
      */
     public static void split(float homogeneityC, int volumeMin, float[][][] image, Cube cube,
             ArrayList<Cube> cubeList, ArrayList<Group> groupList){
