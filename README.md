@@ -6,7 +6,7 @@ Project by:
 This project allows the user to read 3D niftii images, then, it will apply an algorithm to split and merge the said image.
 It writes the new image in another niftii file.
 We worked on the project from the end of September to the beginning of January, a big part of the project was used finding good algorithm to split and merge the images.
-Our project is now finished, here is a link to the (french) report of the project: https://www.overleaf.com/read/ptsrppmccsty#53580e
+Our project is now finished, a french report is available in this project files. 
 
 This project contains in the src folder: 
 	In the Main folder: our different code files divided by classe;
